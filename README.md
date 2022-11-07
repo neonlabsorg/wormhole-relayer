@@ -1,5 +1,5 @@
-# Acala Wormhole Relayer
-The relayer to pay gas fee and redeem token on Karura/Acala after user send token with wormhole.
+# Neon Wormhole Relayer
+The relayer to pay gas fee and redeem token on Neon after user send token with wormhole.
 
 ## Run Locally
 - install deps: `yarn`
