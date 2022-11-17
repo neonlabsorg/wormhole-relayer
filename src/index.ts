@@ -2,7 +2,7 @@ import cors from 'cors';
 import express from 'express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
-import { relay, checkShouldRelay, getVersion } from './relay/main';
+import { checkShouldRelay, getVersion, relay } from './relay/main';
 import { TESTNET_MODE_WARNING, VERSION } from './relay/consts';
 
 dotenv.config({ path: '.env' });
@@ -24,7 +24,7 @@ const startServer = async (): Promise<void> => {
       ----------------------------------------------------------------
       ⚡               relayer running on port ${PORT}               ⚡
       ----------------------------------------------------------------
-      NEON_ETH_RPC_URL        : ${process.env.NEON_ETH_RPC_URL}
+      NEON_ETH_RPC_URL          : ${process.env.NEON_ETH_RPC_URL}
       TESTNET_MODE              : ${process.env.TESTNET_MODE}
       VERSION                   : ${VERSION}
       ----------------------------------------------------------------

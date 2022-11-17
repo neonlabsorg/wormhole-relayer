@@ -20,6 +20,7 @@ const RELAYER_SUPPORTED_ADDRESSES_AND_THRESHOLDS_DEV = {
         '0x07865c6e87b9f70255377e024ace6630c1eaa37f': '50000',
         // BNB => Neon WBNB
         '0xae13d989dac2f0debff460ac112a837c89baa7cd': '1',
+        '0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6': '1'
     }
 };
 const RELAYER_SUPPORTED_ADDRESSES_AND_THRESHOLDS_PROD = {

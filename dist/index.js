@@ -24,7 +24,7 @@ const startServer = async () => {
       ----------------------------------------------------------------
       ⚡               relayer running on port ${PORT}               ⚡
       ----------------------------------------------------------------
-      NEON_ETH_RPC_URL        : ${process.env.NEON_ETH_RPC_URL}
+      NEON_ETH_RPC_URL          : ${process.env.NEON_ETH_RPC_URL}
       TESTNET_MODE              : ${process.env.TESTNET_MODE}
       VERSION                   : ${consts_1.VERSION}
       ----------------------------------------------------------------

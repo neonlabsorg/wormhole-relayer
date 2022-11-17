@@ -1,6 +1,4 @@
-import {
-  CHAIN_ID_NEON
-} from '@certusone/wormhole-sdk';
+import { CHAIN_ID_NEON } from '@certusone/wormhole-sdk';
 import dotenv from 'dotenv';
 
 dotenv.config({ path: '.env' });
@@ -22,6 +20,8 @@ const RELAYER_SUPPORTED_ADDRESSES_AND_THRESHOLDS_DEV = {
 
     // BNB => Neon WBNB
     '0xae13d989dac2f0debff460ac112a837c89baa7cd': '1',
+
+    '0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6': '1'
   }
 };
 

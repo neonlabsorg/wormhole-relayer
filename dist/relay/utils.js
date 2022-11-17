@@ -13,8 +13,8 @@ const parseVaa = async (bytes) => {
 };
 exports.parseVaa = parseVaa;
 const shouldRelayVaa = (vaaInfo) => {
-    const { amount, targetChain, originChain, originAddress, } = vaaInfo;
-    let originChainParsed = wormhole_sdk_1.CHAINS[wormhole_sdk_1.CHAIN_ID_TO_NAME[originChain]];
+    const { amount, targetChain, originChain, originAddress } = vaaInfo;
+    const originChainParsed = wormhole_sdk_1.CHAINS[wormhole_sdk_1.CHAIN_ID_TO_NAME[originChain]];
     const originAsset = (0, wormhole_sdk_1.tryHexToNativeString)(originAddress, originChainParsed);
     const res = (0, exports.shouldRelay)({ targetChain, originAsset, amount });
     const info = JSON.stringify({ targetChain, originAsset, amount, res }, (key, value) => typeof value === 'bigint' ? value.toString() : value);
@@ -22,7 +22,7 @@ const shouldRelayVaa = (vaaInfo) => {
     return res;
 };
 exports.shouldRelayVaa = shouldRelayVaa;
-const shouldRelay = ({ targetChain, originAsset, amount: _amount, }) => {
+const shouldRelay = ({ targetChain, originAsset, amount: _amount }) => {
     const _noRelay = (msg) => ({ shouldRelay: false, msg });
     if (!targetChain)
         return _noRelay('missing targetChain');

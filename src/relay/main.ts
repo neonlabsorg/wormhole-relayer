@@ -1,10 +1,7 @@
-import {
-  ChainId,
-  hexToUint8Array,
-} from '@certusone/wormhole-sdk';
+import { ChainId, hexToUint8Array } from '@certusone/wormhole-sdk';
 import { RelayerEnvironment, validateEnvironment } from '../configureEnv';
 import { VERSION } from './consts';
-import { relayEVM, shouldRelay, parseVaa, shouldRelayVaa } from './utils';
+import { parseVaa, relayEVM, shouldRelay, shouldRelayVaa } from './utils';
 
 const env: RelayerEnvironment = validateEnvironment();
 
@@ -38,19 +35,19 @@ const validateRequest = async (request: any, response: any) => {
       error: msg,
       vaaInfo: {
         ...vaaInfo,
-        amount: vaaInfo.amount.toString(),
-      },
+        amount: vaaInfo.amount.toString()
+      }
     });
   }
 
   return { chainConfigInfo, chainId, signedVAA };
 };
 
-export const relay = async (request: any, response: any): Promise<void> =>  {
+export const relay = async (request: any, response: any): Promise<void> => {
   const {
     chainConfigInfo,
     chainId,
-    signedVAA,
+    signedVAA
   } = await validateRequest(request, response);
 
   if (!chainConfigInfo) return;
@@ -60,7 +57,7 @@ export const relay = async (request: any, response: any): Promise<void> =>  {
 
   try {
     const receipt = await relayEVM(chainConfigInfo, signedVAA);
-    
+
     console.log(`Relay Succeed 🎉🎉: ${relayInfo}, txHash: ${receipt.transactionHash}`);
     response.status(200).json(receipt);
   } catch (e) {
@@ -70,7 +67,7 @@ export const relay = async (request: any, response: any): Promise<void> =>  {
   }
 };
 
-export const checkShouldRelay = (request: any, response: any): void =>  {
+export const checkShouldRelay = (request: any, response: any): void => {
   const res = shouldRelay(request.query);
 
   console.log(`checkShouldRelay: ${JSON.stringify({ ...request.query, ...res })}`);

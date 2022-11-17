@@ -32,6 +32,6 @@ function configNeon() {
         chainId: wormhole_sdk_1.CHAIN_ID_NEON,
         nodeUrl: process.env.NEON_ETH_RPC_URL,
         walletPrivateKey: process.env.NEON_PRIVATE_KEY,
-        tokenBridgeAddress: process.env.NEON_TOKEN_BRIDGE_ADDRESS,
+        tokenBridgeAddress: process.env.NEON_TOKEN_BRIDGE_ADDRESS
     };
 }

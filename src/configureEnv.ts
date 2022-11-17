@@ -1,4 +1,4 @@
-import { ChainId, CHAIN_ID_NEON } from '@certusone/wormhole-sdk';
+import { CHAIN_ID_NEON, ChainId } from '@certusone/wormhole-sdk';
 import { setDefaultWasm } from '@certusone/wormhole-sdk-wasm';
 import dotenv from 'dotenv';
 
@@ -40,6 +40,6 @@ function configNeon(): ChainConfigInfo {
     chainId: CHAIN_ID_NEON,
     nodeUrl: process.env.NEON_ETH_RPC_URL,
     walletPrivateKey: process.env.NEON_PRIVATE_KEY,
-    tokenBridgeAddress: process.env.NEON_TOKEN_BRIDGE_ADDRESS,
+    tokenBridgeAddress: process.env.NEON_TOKEN_BRIDGE_ADDRESS
   };
 }

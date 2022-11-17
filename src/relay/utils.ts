@@ -1,17 +1,15 @@
 import {
-  hexToUint8Array,
-  redeemOnEth,
-  parseTransferPayload,
   CHAIN_ID_TO_NAME,
   CHAINS,
-  tryHexToNativeString,
+  hexToUint8Array,
+  parseTransferPayload,
+  redeemOnEth,
+  tryHexToNativeString
 } from '@certusone/wormhole-sdk';
-import { importCoreWasm } from '@certusone/wormhole-sdk-wasm'
+import { importCoreWasm } from '@certusone/wormhole-sdk-wasm';
 import { ContractReceipt, ethers } from 'ethers';
 import { ChainConfigInfo } from '../configureEnv';
-import {
-  RELAYER_SUPPORTED_ADDRESSES_AND_THRESHOLDS,
-} from './consts';
+import { RELAYER_SUPPORTED_ADDRESSES_AND_THRESHOLDS } from './consts';
 
 interface VaaInfo {
   amount: bigint;
@@ -22,10 +20,11 @@ interface VaaInfo {
   fee: bigint | undefined;
   fromAddress: string | undefined;
 }
+
 interface ShouldRelayResult {
   shouldRelay: boolean;
   msg: string;
-} 
+}
 
 export const parseVaa = async (bytes: Uint8Array): Promise<VaaInfo> => {
   const { parse_vaa } = await importCoreWasm();
@@ -40,10 +39,10 @@ export const shouldRelayVaa = (vaaInfo: VaaInfo): ShouldRelayResult => {
     amount,
     targetChain,
     originChain,
-    originAddress,
+    originAddress
   } = vaaInfo;
 
-  let originChainParsed = CHAINS[CHAIN_ID_TO_NAME[originChain]];
+  const originChainParsed = CHAINS[CHAIN_ID_TO_NAME[originChain]];
   const originAsset = tryHexToNativeString(originAddress, originChainParsed);
 
   const res = shouldRelay({ targetChain, originAsset, amount });
@@ -59,7 +58,7 @@ export const shouldRelayVaa = (vaaInfo: VaaInfo): ShouldRelayResult => {
 export const shouldRelay = ({
   targetChain,
   originAsset,
-  amount: _amount,
+  amount: _amount
 }: {
   targetChain: number;
   originAsset: string;
@@ -90,7 +89,7 @@ export const shouldRelay = ({
 
 export const relayEVM = async (
   chainConfigInfo: ChainConfigInfo,
-  signedVAA: string,
+  signedVAA: string
 ): Promise<ContractReceipt> => {
   const provider = new ethers.providers.JsonRpcProvider(chainConfigInfo.nodeUrl);
   const signer = new ethers.Wallet(chainConfigInfo.walletPrivateKey, provider);
@@ -98,7 +97,7 @@ export const relayEVM = async (
   const receipt = await redeemOnEth(
     chainConfigInfo.tokenBridgeAddress,
     signer,
-    hexToUint8Array(signedVAA),
+    hexToUint8Array(signedVAA)
   );
 
   return receipt;

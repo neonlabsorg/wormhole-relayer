@@ -29,14 +29,14 @@ const validateRequest = async (request, response) => {
             error: msg,
             vaaInfo: {
                 ...vaaInfo,
-                amount: vaaInfo.amount.toString(),
-            },
+                amount: vaaInfo.amount.toString()
+            }
         });
     }
     return { chainConfigInfo, chainId, signedVAA };
 };
 const relay = async (request, response) => {
-    const { chainConfigInfo, chainId, signedVAA, } = await validateRequest(request, response);
+    const { chainConfigInfo, chainId, signedVAA } = await validateRequest(request, response);
     if (!chainConfigInfo)
         return;
     const relayInfo = JSON.stringify({ chainId, signedVAA });
